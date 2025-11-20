@@ -1,16 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Zap, Code, Eye, Terminal, ArrowRight, Star, X, Menu as MenuIcon, Heart, Sparkles } from 'lucide-react';
-
-// --- Constants & Theme ---
-const THEME = {
-  red: '#D91818',
-  black: '#080808', // Darker black
-  white: '#FFFFFF',
-  grey: '#2A2A2A',
-  yellow: '#FFE600',
-};
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { Code, ArrowRight, Star, X, Heart, Sparkles } from 'lucide-react';
 
 // --- Global CSS Injection for specialized effects ---
 const GlobalStyles = () => (
@@ -690,6 +681,10 @@ const App = () => {
   const [activePage, setActivePage] = useState('home');
   const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Global noise overlay
   const NoiseOverlay = () => (
     <div className="noise-overlay" />
@@ -776,6 +771,7 @@ const App = () => {
       {/* Footer Decoration */}
       <div className="fixed bottom-8 right-8 z-40">
         <motion.button
+          onClick={scrollToTop}
           whileHover={{ scale: 1.2, rotate: 180 }}
           whileTap={{ scale: 0.8 }}
           className="bg-[#D91818] p-6 w-20 h-20 flex items-center justify-center rounded-full text-white border-4 border-black shadow-[0_0_0_4px_white,0_0_20px_rgba(217,24,24,0.8)]"
